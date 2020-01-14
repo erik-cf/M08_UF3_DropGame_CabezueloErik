@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ecabezue.drop" >
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="20" />
+    <uses-sdk android:targetSdkVersion="20" />
 
     <application
         android:allowBackup="true"
