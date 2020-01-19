@@ -67,8 +67,8 @@ public class YouLost implements Screen {
         game.batch.draw(bg, 0, 0, 800, 480);
         photoGameOverRestart.draw(game.batch);
 
-        game.introText.draw(game.batch, "¡Has perdido :(! ", 5, 50);
-        game.introText.draw(game.batch, "¡Pulsa el botón para reiniciar!", 5, 30);
+        game.punts_final.draw(game.batch, "Has perdut :(! ", 550, 440);
+        game.punts_final.draw(game.batch, "PUNTS: " + game.puntuacio, 550, 390);
 
         game.batch.end();
 

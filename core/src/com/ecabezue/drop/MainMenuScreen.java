@@ -15,7 +15,7 @@ public class MainMenuScreen implements Screen {
 
     public MainMenuScreen(final Drop game) {
         this.game = game;
-
+        game.puntuacio = 0;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
@@ -35,8 +35,8 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.introText.draw(game.batch, "¡Bienvenido a drop! ", 100, 150);
-        game.introText.draw(game.batch, "¡Toca en cualquier lugar para empezar!", 100, 100);
+        game.introText.draw(game.batch, "Benvingut a drop! ", 20, 100);
+        game.introText.draw(game.batch, "Toca a qualsevol lloc per a començar!", 20, 50);
 
         game.batch.end();
 
