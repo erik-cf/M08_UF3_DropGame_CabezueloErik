@@ -33,7 +33,7 @@ public class GameScreen implements Screen {
     private BitmapFont puntuacio;
     private BitmapFont fps;
     private BitmapFont actualPowerUp;
-    private int contador;
+    private Sound looseSound;
     private float speed = 5;
     final Drop game;
     private boolean powerUpSpawned = false;
@@ -75,6 +75,7 @@ public class GameScreen implements Screen {
 
         // Carreguem el só
         dropSound = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
+        looseSound = Gdx.audio.newSound(Gdx.files.internal("gameover.wav"));
         rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"));
 
         // Fem que es repeteixi cada cop que acabi el só de fons de la pluja
@@ -314,13 +315,14 @@ public class GameScreen implements Screen {
                 // Si cau la gota, es perd:
                 if(raindrop.y + 64 < 0) {
                     iter.remove();
+                    looseSound.play();
                     rainMusic.stop();
                     game.setScreen(new YouLost(game));
                 }
             }
         }
         // Si es toquen puntuacions amb 0, s'apuja x1,3 la velocitat.
-        if(game.puntuacio % 10 == 0){
+        if(game.puntuacio % 10 == 0 && game.puntuacio != 0){
             speed *= 1.3f;
         }
 
