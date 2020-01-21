@@ -24,6 +24,7 @@ public class GameScreen implements Screen {
     private Texture bucketImage;
     private Sound dropSound;
     private Music rainMusic;
+    private boolean speedUp = false;
     private OrthographicCamera camera;
     public SpriteBatch batch;
     private Rectangle bucket;
@@ -276,6 +277,10 @@ public class GameScreen implements Screen {
                 game.puntuacio+=10;
                 // Cridem el metode de comprovar acció aleatòriament
                 compAccio((int)((Math.random() * 4) + 1));
+                // Si es toquen puntuacions amb 0, s'apuja x1,3 la velocitat.
+                if(game.puntuacio % 10 == 0 && game.puntuacio != 0){
+                    speedUp();
+                }
             }
             // Si es cau el powerUp no perdem:
             if(powerUp.y + 64 < 0) {
@@ -294,6 +299,10 @@ public class GameScreen implements Screen {
                     iter.remove();
                     // Les gotes daurades donen 5 punts:
                     game.puntuacio+=5;
+                    // Si es toquen puntuacions amb 0, s'apuja x1,3 la velocitat.
+                    if(game.puntuacio % 10 == 0 && game.puntuacio != 0){
+                        speedUp();
+                    }
                 }
                 // Si cau la gota, no es perd perquè és daurada:
                 if(raindrop.y + 64 < 0) {
@@ -310,6 +319,10 @@ public class GameScreen implements Screen {
                     dropSound.play();
                     iter.remove();
                     game.puntuacio++;
+                    // Si es toquen puntuacions amb 0, s'apuja x1,3 la velocitat.
+                    if(game.puntuacio % 10 == 0 && game.puntuacio != 0){
+                        speedUp();
+                    }
 
                 }
                 // Si cau la gota, es perd:
@@ -321,10 +334,8 @@ public class GameScreen implements Screen {
                 }
             }
         }
-        // Si es toquen puntuacions amb 0, s'apuja x1,3 la velocitat.
-        if(game.puntuacio % 10 == 0 && game.puntuacio != 0){
-            speed *= 1.3f;
-        }
+
+
 
     }
 
@@ -357,6 +368,10 @@ public class GameScreen implements Screen {
         powerUps.add(powerUpRect);
         lastPowerUpTime = TimeUtils.nanoTime();
         powerUpSpawned = true;
+    }
+
+    private void speedUp(){
+        speed *= 1.3f;
     }
 
     /*
